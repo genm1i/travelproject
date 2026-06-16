@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h2>Откройте мир вместе с нами</h2>
+            <p>Эксклюзивные туры по самым красивым уголкам планеты</p>
+
+            <form method="GET" class="search-box">
+                <input type="text" name="q" placeholder="Куда хотите поехать?">
+                <button type="submit">Найти тур</button>
+            </form>
+
+            <button class="btn-large">Смотреть предложения →</button>
+        </div>
+    </section>
+
+    <!-- ================= STATS ================= -->
+    <section class="stats">
+        <div class="stat-box">
+            <h3>1500+</h3>
+            <p>Довольных клиентов</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>70+</h3>
+            <p>Направлений</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>24/7</h3>
+            <p>Поддержка</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>10 лет</h3>
+            <p>На рынке</p>
+        </div>
+    </section>
+
+    <!-- ================= TOURS ================= -->
+    <section class="tours">
+        <h2>Популярные направления</h2>
+
+        <div class="card-container">
+            {% for dest in dests %}
+            <div class="card">
+                <img src="{{ dest.img.url }}" alt="{{ dest.name }}">
+
+                <div class="card-body">
+                    <h3>{{ dest.name }}</h3>
+                    <p>{{ dest.description|truncatechars:80 }}</p>
+
+                    <div class="price">
+                        от {{ dest.price }} ₽
+                    </div>
+
+                    {% if dest.offer %}
+                    <span class="hot-offer">🔥 Горящий тур</span>
+                    {% endif %}
+
+                    <a href="{% url 'tour_detail' dest.id %}">
+                        <button class="btn-card">Подробнее</button>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- ================= WHY US ================= -->
+    <section class="features">
+        <h2>Почему выбирают нас?</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+                <h3>Лучшие направления</h3>
+                <p>Самые популярные курорты мира.</p>
+            </div>
+
+            <div class="feature-box">
+                <h3>Выгодные цены</h3>
+                <p>Скидки и горящие предложения.</p>
+            </div>
+
+            <div class="feature-box">
+                <h3>Безопасность</h3>
+                <p>Страхование и надежные партнеры.</p>
+            </div>
+
+            <div class="feature-box">
+                <h3>Поддержка 24/7</h3>
+                <p>Мы всегда рядом во время путешествия.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="widget">
+            <h3>Подписка на скидки</h3>
+            <input type="email" placeholder="Ваш email">
+            <button>Подписаться</button>
+        </div>
+
+        <div class="widget">
+            <h3>Полезные советы</h3>
+            <ul>
+                <li>Как собрать чемодан за 10 минут</li>
+                <li>5 мест для осеннего отдыха</li>
+                <li>Лайфхаки дешёвых билетов</li>
+            </ul>
+        </div>
+
+    </aside>
+
+    <!-- ================= REVIEWS ================= -->
+    <section class="reviews">
+        <h2>Отзывы клиентов</h2>
+
+        <div class="review-container">
+
+            <div class="review-card">
+                <p>"Отдых был потрясающий! Всё организовано идеально."</p>
+                <span>— Анна</span>
+            </div>
+
+            <div class="review-card">
+                <p>"Лучший сервис! Уже бронируем следующий тур."</p>
+                <span>— Максим</span>
+            </div>
+
+            <div class="review-card">
+                <p>"Очень понравилось, рекомендую всем."</p>
+                <span>— Ольга</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta">
+        <h2>Готовы к путешествию?</h2>
+        <p>Забронируйте тур прямо сейчас и получите скидку 10%</p>
+        <button class="btn-large">Забронировать</button>
+    </section>
+
+   {% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="detail">
+
+    <!-- Хлебные крошки -->
+    <div class="breadcrumb">
+        <a href="{% url 'home' %}">Главная</a> /
+        <a href="{% url 'tours' %}">Туры</a> /
+        <span>{{ tour.name }}</span>
+    </div>
+
+    <!-- Фото тура -->
+    <img src="{{ tour.img.url }}" alt="{{ tour.name }}">
+
+    <!-- Название -->
+    <h1>{{ tour.name }}</h1>
+
+    <!-- Описание -->
+    <p>{{ tour.description }}</p>
+
+    <!-- Цена -->
+    <h2>{{ tour.price }} ₽</h2>
+
+    <!-- Горящий тур -->
+    {% if tour.offer %}
+        <span class="hot-offer">🔥 Горящий тур</span>
+    {% endif %}
+
+    <!-- Кнопки -->
+    <div class="detail-actions">
+        <a href="{% url 'add_to_cart' tour.id %}">
+    <button class="btn-book">
+        Добавить в корзину
+    </button>
+</a>
+
+        <a href="{% url 'tours' %}">
+            <button class="btn-back">
+                ← Назад к турам
+            </button>
+        </a>
+    </div>
+
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="tours">
+    <h1>Все туры</h1>
+
+    <div class="card-container">
+        {% for dest in dests %}
+        <div class="card">
+            <img src="{{ dest.img.url }}">
+            <div class="card-body">
+                <h3>{{ dest.name }}</h3>
+                <p>{{ dest.description }}</p>
+                <div class="price">{{ dest.price }} ₽</div>
+                 <a href="{% url 'tour_detail' dest.id %}">
+                        <button class="btn-card">Подробнее</button>
+                    </a>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="cart-page">
+
+    <div class="cart-header">
+        <h1>Ваша корзина</h1>
+        <p>Выбранные туры</p>
+    </div>
+
+    {% if items %}
+
+        <div class="cart-container">
+
+            <div class="cart-items">
+
+                {% for item in items %}
+                <div class="cart-item">
+
+                    <div class="cart-item-info">
+                        <h3>{{ item.destination.name }}</h3>
+                        <p>{{ item.destination.description|truncatechars:80 }}</p>
+                    </div>
+
+                    <div class="cart-item-price">
+                        {{ item.destination.price }} ₽
+                    </div>
+
+                    <a class="cart-remove"
+                       href="{% url 'remove_from_cart' item.id %}">
+                        Удалить
+                    </a>
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- ИТОГО -->
+            <div class="cart-summary">
+                <h2>Итого</h2>
+
+                <p>
+                    {{ items|length }} тура(ов)
+                </p>
+
+                <a href="#" class="checkout-btn">
+                    Оформить заказ
+                </a>
+
+            </div>
+
+        </div>
+
+    {% else %}
+
+        <div class="cart-empty">
+            <h2>Корзина пуста</h2>
+            <a href="{% url 'tours' %}" class="btn-back">
+                Посмотреть туры
+            </a>
+        </div>
+
+    {% endif %}
+
+</section>
+{% endblock %}

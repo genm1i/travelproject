@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelDream - Путешествия мечты</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="floating-navbar">
+        <div class="logo">
+            <h1>TravelDream</h1>
+        </div>
+
+        <nav>
+    <a href="{% url 'home' %}">Главная</a>
+    <a href="{% url 'tours' %}">Туры</a>
+    <a href="{% url 'blog' %}">Блог</a>
+    <a href="{% url 'about' %}">О нас</a>
+    <a href="{% url 'contacts' %}">Контакты</a>
+</nav>
+
+<div class="auth-buttons">
+    {% if user.is_authenticated %}
+        <a href="{% url 'cart' %}" class="btn-outline">Корзина</a>
+        <a href="{% url 'logout' %}" class="btn-primary">Выйти</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn-outline">Вход</a>
+        <a href="{% url 'register' %}" class="btn-primary">Регистрация</a>
+    {% endif %}
+</div>
+    </header>
+
+{% block content %}
+{% endblock %}
+        <footer>
+        <div class="footer-content">
+
+            <!-- Левая колонка -->
+            <div class="footer-col">
+                <h3>TravelDream</h3>
+                <p>Путешествуй осознанно, отдыхай ярко.</p>
+                <p class="footer-text">
+                    Лучшие туры по всему миру по выгодным ценам.
+                </p>
+            </div>
+
+            <!-- Средняя колонка -->
+            <div class="footer-col">
+                <h4>Навигация</h4>
+                <a href="#">О нас</a>
+                <a href="#">Туры</a>
+                <a href="#">Блог</a>
+                <a href="#">Страховка</a>
+                <a href="#">Контакты</a>
+            </div>
+
+            <!-- Правая колонка -->
+            <div class="footer-col">
+                <h4>Оставить заявку</h4>
+
+                <form class="footer-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Ваше имя" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" placeholder="Номер телефона" required>
+                    </div>
+
+                    <button type="submit">
+                        Отправить
+                    </button>
+                    <p class="footer-policy">
+                    Политика конфиденциальности · Договор оферты
+                    </p>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © TravelDream. Все мечты сбываются.
+        </div>
+    </footer>
+
+</body>
+
+</html>
